@@ -1,1 +1,260 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commission Calculator</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <!-- Panels for Main and Emote -->
+        <div id="container">
+            <!-- Tabs for selecting main panel options -->
+            <div class="tabs">
+            <!-- Dropdown for Base options -->
+            <div class="dropdown">
+                <button id="base-tab" class="tab" onclick="toggleDropdown()" disabled>Illustration <span class="dropdown-icon">▼</span></button>
+                <div id="dropdown-menu" class="dropdown-menu">
+                </div>
+            </div>
+            <!-- Emote tab -->
+            <div class="tab" onclick="selectEmoteTab('emote')">Emote</div>
+            </div>
+
+            
+
+            <div class="container-wrapper">
+                <div class="container left-container">
+                    <div id="beginning-panel" class="panel active">
+                        <p>Please select a commission type at the top to get started!</p>
+                    </div>
+                    <div id="main-panel" class="panel">
+                        <center><font size="5">Quality</font></center>
+                        <br />
+                        <input
+                            type="radio"
+                            id="lineStyleSketch"
+                            name="lineStyle"
+                            value="sketch"
+                            checked
+                        />
+                        <label for="lineStyleSketch">Sketch (Base)</label><br />
+
+                        <input
+                            type="radio"
+                            id="lineStyleLineart"
+                            name="lineStyle"
+                            value="lineart"
+                        />
+                        <label for="lineStyleLineart">Lineart (+70%)</label><br />
+
+                        <input class="checkbox" type="checkbox" id="colorCheck" /> <label for="colorCheck">Color
+                        (+60%)</label><br />
+                        <input class="checkbox" type="checkbox" id="shadingCheck" /> <label for="shadingCheck">Shading
+                        (+90-95%)</label><br />
+                        <div id="shadingDiv" class="hidden">
+                        &nbsp;&nbsp;<input
+                            type="radio"
+                            id="shadingStyleCell"
+                            name="shadingStyle"
+                            value="cell"
+                            checked
+                        />
+                        <label for="shadingStyleCell">Cell Shading (+90%)</label><br />
+                        &nbsp;&nbsp;<input
+                            type="radio"
+                            id="shadingStyleSoft"
+                            name="shadingStyle"
+                            value="soft"
+                            disabled
+                        />
+                        <s><label for="shadingStyleSoft">Soft Shading (+95%)</label></s><br />
+                        </div>
+                
+                        <br />
+                        <hr />
+                        <p></p>
+                        <center><font size="5">Extras</font></center>
+                        <br />
+                        <input class="checkbox" type="checkbox" id="addCharsCheck" /> Additional
+                        Character(s)<br />
+                        <div id="charDiv" class="hidden">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input
+                                class="textbox"
+                                type="number"
+                                id="customCharsAmt"
+                                name="customCharsAmt"
+                                min="0"
+                                defaultValue="0"
+                                placeholder="0"
+                            />
+                            <label for="customCharsAmt">Custom Characters (+50%/character of Quality Price)</label><br />
+                        <div id="silhouetteDiv">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input
+                            class="textbox"
+                            type="number"
+                            id="silhouetteAmt"
+                            name="silhouetteAmt"
+                            min="0"
+                            defaultValue="0"
+                            placeholder="0"
+                            />
+                            <label for="silhouetteAmt">Silhouettes (+25%/silhouette of Quality Price)</label><br />
+                        </div>
+                        </div>
+                        <input class="checkbox" type="checkbox" id="backgroundCheck" />
+                        <label for="backgroundCheck">Background (+$15-50)</label><br />
+                        <div id="backgroundDiv" class="hidden">
+                        &nbsp;&nbsp;<input
+                            type="radio"
+                            id="backgroundComplexitySimple"
+                            name="backgroundComplexity"
+                            value="simple"
+                            checked
+                        />
+                        <label for="backgroundComplexitySimple">Simple BG (+$15)</label><br />
+                        &nbsp;&nbsp;<input
+                            type="radio"
+                            id="backgroundComplexityDetailed"
+                            name="backgroundComplexity"
+                            value="detailed"
+                            disabled
+                        />
+                        <s><label for="backgroundComplexityDetailed">Detailed BG (+$50)</label></s>
+                        <b></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Not currently taking detailed BG's, sorry!)</b><br />
+                        </div>
+                        <input class="checkbox" type="checkbox" id="panelCheck" />
+                        <label for="panelAmt">Additional Panel(s) (+75%/panel After Extras)</label><br />
+                        <div id="panelDiv" class="hidden">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount of Panels:
+                            <input
+                                class="textbox"
+                                type="number"
+                                id="panelAmt"
+                                name="panelAmt"
+                                min="1"
+                                value="1"
+                                placeholder="1"
+                            />
+                        </div>
+                    </div>
+                    <div id="emote-panel" class="panel">
+                        <center><font size="5">Extras</font></center>
+                        <br />
+                        <input class="checkbox" type="checkbox" id="animatedCheck" />
+                        Animated (+$15-25)<br />
+                        <div id="animatedDiv" class="hidden">
+                        &nbsp;&nbsp;<input
+                            type="radio"
+                            id="animationComplexitySimple"
+                            name="animationComplexity"
+                            value="simple"
+                            checked
+                        />
+                        <label for="animationComplexitySimple">Simple Animation (+$10)</label><br />
+                        &nbsp;&nbsp;<input
+                            type="radio"
+                            id="animationComplexityComplex"
+                            name="animationComplexity"
+                            value="complex"
+                        />
+                        <label for="animationComplexityComplex">Complex Animation (+$20)</label>
+                        </div>
+                        <input class="checkbox" type="checkbox" id="additionalEmoteCheck" />
+                        Additional Emote(s)<br />
+                        <div id="additionalEmoteDiv" class="hidden">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                class="textbox"
+                                type="number"
+                                id="additionalStaticEmoteAmt"
+                                name="additionalStaticEmoteAmt"
+                                min="0"
+                                value="0"
+                                placeholder="0"
+                            />&nbsp;&nbsp;Static Emotes</br>
+                            
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                class="textbox"
+                                type="number"
+                                id="additionalSimpleEmoteAmt"
+                                name="additionalSimpleEmoteAmt"
+                                min="0"
+                                value="0"
+                                placeholder="0"
+                            />&nbsp;&nbsp;Animated (Simple) Emotes</br>
+                            
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                class="textbox"
+                                type="number"
+                                id="additionalComplexEmoteAmt"
+                                name="additionalComplexEmoteAmt"
+                                min="0"
+                                value="0"
+                                placeholder="0"
+                            />&nbsp;&nbsp;Animated (Complex) Emotes
+                        </br>&nbsp;&nbsp;$5 discount for every 5 emotes!
+                        </div>
+                    </div>
+                    <div id="price" class="hidden">
+                        <center>Price: $</center>
+                    </div>
+                </div>
+                <div id="illustration-example" class="right-container hidden">
+                    <img src="src/img/MysaExample_BG.png" class="stacked-image" id="bgImg" />
+                    <img src="src/img/MysaExample_Color.png" class="stacked-image" id="colorImg" hidden />
+                    <div id="shadingImages" class="hidden">
+                        <img src="src/img/MysaExample_CellShading.png" class="stacked-image" id="cellShadeImg" data-group="shadingStyle" data-value="cell"/>
+                        <img src="src/img/MysaExample_SoftShading.png" class="stacked-image" id="softShadeImg" data-group="shadingStyle" data-value="soft" hidden />
+                    </div>
+                    <img src="src/img/MysaExample_Sketch.png" class="stacked-image" id="sketchImg" data-group="lineStyle" data-value="sketch" />
+                    <img src="src/img/MysaExample_Line.png" class="stacked-image" id="lineartImg" data-group="lineStyle" data-value="lineart" hidden />
+                    <p class="example-text">(Quality Example)</p>
+                </div>
+                <div id="emote-example" class="right-container hidden">
+                    <div id="static-emotes" class="emote-examples">
+                        <img src="src/img/Emotes/Static/SpottyEmote_83c.png" class="emote-image" />
+                        <img src="src/img/Emotes/Static/spottyScrem.png" class="emote-image" />
+                        <img src="src/img/Emotes/Static/spottySippies.png" class="emote-image" />
+                        <img src="src/img/Emotes/Static/SpowteEmotes_BotosBinty4alt.png" class="emote-image" />
+                        <img src="src/img/Emotes/Static/SpowteEmotess_A.png" class="emote-image" />
+                        <img src="src/img/Emotes/Static/SpowteEmotess_C.png" class="emote-image" />
+                        <img src="src/img/Emotes/Static/Emotes_Lexi_1.png" class="emote-image" />
+                        <img src="src/img/Emotes/Static/Emotes_Lexi_2a.png" class="emote-image" />
+                        <img src="src/img/Emotes/Static/Emotes_Lexi_4.png" class="emote-image" />
+                        <img src="src/img/Emotes/Static/Etsy_BatEmoteStroke_1.png" class="emote-image" />
+                        <img src="src/img/Emotes/Static/Etsy_BatEmoteStroke_3.png" class="emote-image" />
+                        <img src="src/img/Emotes/Static/Etsy_BatEmoteStroke_5.png" class="emote-image" />
+                    </div>
+                    <div id="animated-emotes-simple" class="emote-examples hidden">
+                        <img src="src/img/Emotes/Animated Simple/spottyPOG.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Simple/Spowte_MouthA400.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Simple/SpowteEmotes_B_500x500_GIF.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Simple/SpowteEmotes_I_500x500_GIF.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Simple/SpowteEmotes_K_500x500_GIF.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Simple/SpowteNodders2_x400.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Simple/SpowteNopers_x400.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Simple/SpowteScremShaded.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Simple/SpowteVore_x400.gif" class="emote-image" />
+                    </div>
+                    <div id="animated-emotes-complex" class="emote-examples hidden">
+                        <img src="src/img/Emotes/Animated Complex/spottyEatPizza.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Complex/spottyHeadpats.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Complex/SpowteBoop_v3.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Complex/SpowteEmote_Sus_fast.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Complex/spowteRave_FixedIThink.gif" class="emote-image" />
+                        <img src="src/img/Emotes/Animated Complex/JVemotes_popcorn_Anim_GIF_500.gif" class="emote-image" />
+                    </div>
+                    <p class="example-text">(Quality Example)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+  
+    <script src="src/calc.js"></script>
+    <script src="src/tabs.js"></script>
+  </body>
+</html>
